@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_21_052549) do
+ActiveRecord::Schema.define(version: 2021_09_21_111515) do
 
   create_table "closet_data", force: :cascade do |t|
     t.string "type"
@@ -28,4 +28,24 @@ ActiveRecord::Schema.define(version: 2021_09_21_052549) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "weight_histories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "weight"
+    t.string "memo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_weight_histories_on_user_id"
+  end
+
+  create_table "weight_history2s", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "weight"
+    t.string "memo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_weight_history2s_on_user_id"
+  end
+
+  add_foreign_key "weight_histories", "users"
+  add_foreign_key "weight_history2s", "users"
 end
